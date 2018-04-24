@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class Login
@@ -70,15 +71,16 @@ public class Login extends HttpServlet {
 	    }
         
         RequestDispatcher dispatcher = null;
+        HttpSession session = request.getSession();
         
         if (succeeded)
         {
-        	request.setAttribute("loggedIn", "success");
-        	request.setAttribute("uname", displayName);
-            dispatcher = request.getRequestDispatcher(successURL);
+        	session.setAttribute("loggedIn", "success");
+        	session.setAttribute("uname", displayName);
+            dispatcher = getServletContext().getRequestDispatcher(successURL);
         } else {
-            request.setAttribute("errorMsg", errorMessage);
-            dispatcher = request.getRequestDispatcher(failURL);
+        	session.setAttribute("errorMsg", errorMessage);
+            dispatcher = getServletContext().getRequestDispatcher(failURL);
         }
         
         dispatcher.forward(request, response);

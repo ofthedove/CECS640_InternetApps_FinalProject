@@ -11,29 +11,31 @@
 </head>
 <body>
 	<div class="header">
-		<img class="header-logo" src="logo.png" alt="ACM Logo">
+		<div class="header-logo">
+			<img class="header-logo" src="logo.png" alt="ACM Logo">
+		</div>
 		<h1 class="header-name">ACM Lending Library</h1>
-		<%
-			if(request.getAttribute("uname") != null) {
-				if (request.getAttribute("uname").toString().trim().isEmpty()) {
-					out.println("<a class=\"header-login\" href=\"LoginPage.jsp\">Login</a>");
+		<div class="header-login"> <%
+			if(session.getAttribute("uname") != null) {
+				if (session.getAttribute("uname").toString().trim().isEmpty()) {
+					out.println("<a href=\"LoginPage.jsp\">Login</a>");
 				} else {
 					out.print("<p>Hello ");
-					out.print(request.getAttribute("uname").toString());
+					out.print(session.getAttribute("uname").toString());
 					out.print("! | ");
-					out.println("<a class=\"header-login\" href=\"LoginPage.jsp\">Log Out</a></p>");
+					out.println("<a href=\"LoginPage.jsp\">Log Out</a></p>");
 				}
 			} else {
 				out.println("<a class=\"header-login\" href=\"LoginPage.jsp\">Login</a>");
 			}
-		%>
+		%> </div>
 	</div>
 	
 	<div class="content-container">
 		<div class="content">
 			<%
-				if(request.getAttribute("loggedIn") != null) {
-					if (request.getAttribute("loggedIn").toString().trim().equals("success")) {
+				if(session.getAttribute("loggedIn") != null) {
+					if (session.getAttribute("loggedIn").toString().trim().equals("success")) {
 						out.println("<p style=\"color:red;\"> You are now logged in!</p>");
 					}
 				}
