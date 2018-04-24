@@ -1,0 +1,138 @@
+@charset "UTF-8";
+
+body {
+	margin: 0px;
+	padding: 0px;
+	background-color: whitesmoke;
+	font-family: verdana, sans;
+}
+
+.header {
+	width: 100%;
+	height: 100px;
+	margin: 0px;
+	background-color: #6c6c6c;
+	color: white;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+}
+
+div.header-logo {
+	width: 150px;
+	height: 90px;
+	margin: 5px;
+	margin-right: auto;
+}
+
+img.header-logo {
+	width: 90px;
+	height: 90px;
+}
+
+.header-name {
+	
+}
+
+.header-login {
+	width: 150px;
+	height: 50px;
+	margin: 10px;
+	margin-left: auto;
+	text-align: center;
+	font-size: 20px;
+	line-height: 50px;
+	color: white;
+	text-decoration: none;
+}
+
+.content-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.content {
+	width: 80%;
+	margin: 20px;
+	background-color: #cccccc;
+	text-align: center;
+	font-size: 200%;
+}
+
+.login-container {
+	width: 100%;
+	height: calc(100vh - 100px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.login-modal {
+	width: 300px;
+	height: 200px;
+	margin: 20px;
+	background-color: #cccccc;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: nowrap;
+}
+
+.login-modal input {
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.login-modal button {
+	width: 100px;
+	display: block;
+	margin: 10px auto;
+}
+
+.sql-container {
+	width: 100%;
+	height: calc(100vh - 100px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.sqlSubmit-modal {
+	min-width: 300px;
+	min-height: 100px;
+	margin: 20px;
+	padding: 20px;
+	background-color: #cccccc;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: nowrap;
+}
+
+.sqlSubmit-modal textarea {
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+.sqlSubmit-modal button {
+	width: 100px;
+	display: block;
+	margin: 10px auto;
+}
+
+.queryResult-page {
+	width: 90vw;
+	margin: 20px;
+	padding: 20px;
+	background-color: #cccccc;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: nowrap;
+}
