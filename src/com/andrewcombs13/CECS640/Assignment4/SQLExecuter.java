@@ -94,4 +94,33 @@ public class SQLExecuter
         }
         return result;
     }
+    
+    public String findUser(String id, String password)
+    {
+        boolean foundUser = false;
+        String displayName = "";
+        
+        String query = "SELECT * FROM USERS WHERE UNAME = '" + id + "' AND PASSWORD = '" + password + "'";
+        
+        try
+        {
+        	Statement s = connection.createStatement();
+            ResultSet rs = s.executeQuery(query);
+            if (rs.next())
+            {
+            	foundUser = true;
+            	displayName = rs.getString("NAME");
+            }
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        
+        if (foundUser) {
+        	return (displayName);
+        } else {
+        	return ("");
+        }
+    }
 }

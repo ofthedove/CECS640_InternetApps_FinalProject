@@ -15,7 +15,7 @@
     <res-auth>Container</res-auth>
   </resource-ref>
   <servlet>
-  	<servlet-name>LendingLibrarySQLProcessor.java</servlet-name>
-  	<servlet-class>com.andrewcombs13.CECS640.Assignment4.LendingLibrarySQLProcessor</servlet-class>
+    <servlet-name>LendingLibrarySQLProcessor.java</servlet-name>
+    <servlet-class>com.andrewcombs13.CECS640.Assignment4.LendingLibrarySQLProcessor</servlet-class>
   </servlet>
 </web-app>
