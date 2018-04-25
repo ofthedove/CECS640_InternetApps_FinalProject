@@ -24,8 +24,7 @@
 				} else {
 					out.print("<p>Hello ");
 					out.print(session.getAttribute("uname").toString());
-					out.print("! | ");
-					out.println("<a href=\"LoginPage.jsp\">Log Out</a></p>");
+					out.println("! (<a href=\"LoginPage.jsp\">Log Out</a>)</p>");
 				}
 			} else {
 				out.println("<a class=\"header-login\" href=\"LoginPage.jsp\">Login</a>");

@@ -48,10 +48,9 @@ img.header-logo {
 	text-decoration: none;
 }
 
-.content-container {
-	width: 100%;
-	display: flex;
-	justify-content: center;
+.header-login a {
+	color: white;
+	text-decoration: none;
 }
 
 .menu {
@@ -84,6 +83,12 @@ img.header-logo {
 .menu a {
 	text-decoration: none;
 	color: inherit;
+}
+
+.content-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
 
 .content {
