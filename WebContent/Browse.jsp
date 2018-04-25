@@ -47,6 +47,24 @@
 			<h1>Browse</h1>
 			
 			<%
+				if (session.getAttribute("checkOutError") != null)
+				{
+					out.println(session.getAttribute("checkOutError"));
+					
+					session.removeAttribute("checkOutError");
+					session.removeAttribute("checkOutResult");
+				}
+				else
+				{
+					if (session.getAttribute("checkOutResult") != null)
+					{
+						out.println("<p>" + (String)session.getAttribute("checkOutResult") + "</p>");
+						session.removeAttribute("checkOutResult");
+					}
+				}
+			%>
+			
+			<%
 				if (session.getAttribute("error") != null)
 				{
 					out.println(session.getAttribute("error"));
@@ -70,7 +88,7 @@
 							    out.println(t.name);
 							    out.println("</td><td>");
 							    if (t.checkedOutBy == null || t.checkedOutBy.isEmpty()) {
-								    out.println("Available");
+								    out.println("Available (<a href=\"CheckOut?ItemID=" + t.ItemID + "\">check out</a>)");
 							    } else {
 								    out.println("Out: " + t.checkedOutBy);
 							    }

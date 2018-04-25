@@ -175,3 +175,7 @@ img.header-logo {
 table {
 	margin: 10px auto;
 }
+
+table a {
+	color: black;
+}

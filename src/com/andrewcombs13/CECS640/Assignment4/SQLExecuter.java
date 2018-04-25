@@ -128,6 +128,40 @@ public class SQLExecuter
         }
     }
     
+    public String checkOut(String ItemID, String uname)
+    {
+        String query = "UPDATE Items SET checkedOut = 1, checkedOutBy = '" + uname + "' WHERE ItemID = '" + ItemID + "'";
+        String error = "Query Failed!";
+        String success = "Successfully checked out item";
+        
+        if (IsOpen() == false)
+        {
+            return error + " No connection to database.";
+        }
+        try
+        {
+            Statement statement = connection.createStatement();
+            int resultStatus = statement.executeUpdate(query);
+            
+            if (resultStatus == 0)
+            {
+            	error += " Unable to find item in database!";
+            	return error;
+            }
+        }
+        catch (SQLException e)
+        {
+        	error += e.getMessage();
+            System.out.println("An SQL Databse error occured!");
+            System.out.println("Error message: " + e.getMessage());
+            System.out.println("SQL State: " + e.getSQLState());
+            System.out.println("Stack Trace: " + e.getStackTrace());
+            return error;
+        }
+        
+        return success;
+    }
+    
     public Object getAllItems()
     {
         return getMyItems(null);
