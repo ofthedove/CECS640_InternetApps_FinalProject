@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 import edu.louisville.ssoe.cecs.cecs640.controllers.ConnectionPool;
 import edu.louisville.ssoe.cecs.cecs640.controllers.SQLUtil;
@@ -122,5 +126,151 @@ public class SQLExecuter
         } else {
         	return ("");
         }
+    }
+    
+    public Object getAllItems()
+    {
+        return getMyItems(null);
+    }
+    
+    public Object getMyItems(String username)
+    {
+        String query = "SELECT * FROM Items WHERE checkedOutBy = '" + username + "'";
+    	if (username == null) {
+    		query = "SELECT * FROM Items";
+    	}
+        String error = "Query Failed!";
+        ArrayList<Item> resultList = new ArrayList<Item>();
+        
+        if (IsOpen() == false)
+        {
+            return error + " No connection to database.";
+        }
+        try
+        {
+            Statement statement = connection.createStatement();
+            
+            ResultSet resultSet = statement.executeQuery(query);
+            
+            while (resultSet.next())
+            {
+            	Item item = new Item();
+            	item.ItemID = resultSet.getInt("ItemID");
+            	item.name = resultSet.getString("name");
+            	item.description = resultSet.getString("description");
+            	item.checkedOut = resultSet.getInt("checkedOut") != 0;
+            	item.checkedOutBy = resultSet.getString("checkedOutBy");
+            	
+            	resultList.add(item);
+            }
+            
+            resultSet.close();
+        }
+        catch (SQLException e)
+        {
+        	error += e.getMessage();
+            System.out.println("An SQL Databse error occured!");
+            System.out.println("Error message: " + e.getMessage());
+            System.out.println("SQL State: " + e.getSQLState());
+            System.out.println("Stack Trace: " + e.getStackTrace());
+            return error;
+        }
+        return resultList;
+    }
+    
+    public Object getAllTransactions()
+    {
+        String query = "SELECT * FROM transactions";
+        String error = "Query Failed!";
+        ArrayList<Transaction> resultList = new ArrayList<Transaction>();
+        
+        if (IsOpen() == false)
+        {
+            return error + " No connection to database.";
+        }
+        try
+        {
+            Statement statement = connection.createStatement();
+            
+            ResultSet resultSet = statement.executeQuery(query);
+            
+            while (resultSet.next())
+            {
+            	Transaction transaction = new Transaction();
+            	
+            	transaction.TransactionID = resultSet.getInt("TransactionID");
+            	transaction.ItemID = resultSet.getInt("ItemID");
+            	
+            	String input = resultSet.getString("tdate");
+            	SimpleDateFormat parser = new SimpleDateFormat("yyyy-mm-dd");
+            	try { transaction.tdate = parser.parse(input); }
+            	catch (ParseException e) { transaction.tdate = new Date(); }
+            	
+            	transaction.ttype = resultSet.getString("ttype");
+            	transaction.description = resultSet.getString("description");
+            	
+            	resultList.add(transaction);
+            }
+            
+            resultSet.close();
+        }
+        catch (SQLException e)
+        {
+        	error += e.getMessage();
+            System.out.println("An SQL Databse error occured!");
+            System.out.println("Error message: " + e.getMessage());
+            System.out.println("SQL State: " + e.getSQLState());
+            System.out.println("Stack Trace: " + e.getStackTrace());
+            return error;
+        }
+        return resultList;
+    }
+    
+    public Object getAllUpdates()
+    {
+        String query = "SELECT * FROM updates";
+        String error = "Query Failed!";
+        ArrayList<Update> resultList = new ArrayList<Update>();
+        
+        if (IsOpen() == false)
+        {
+            return error + " No connection to database.";
+        }
+        try
+        {
+            Statement statement = connection.createStatement();
+            
+            ResultSet resultSet = statement.executeQuery(query);
+            
+            while (resultSet.next())
+            {
+            	Update update = new Update();
+            	
+            	update.UpdateID = resultSet.getInt("UpdateID");
+            	update.ItemID = resultSet.getInt("ItemID");
+            	
+            	String input = resultSet.getString("udate");
+            	SimpleDateFormat parser = new SimpleDateFormat("yyyy-mm-dd");
+            	try { update.udate = parser.parse(input); }
+            	catch (ParseException e) { update.udate = new Date(); }
+            	
+            	update.utype = resultSet.getString("utype");
+            	update.description = resultSet.getString("description");
+            	
+            	resultList.add(update);
+            }
+            
+            resultSet.close();
+        }
+        catch (SQLException e)
+        {
+        	error += e.getMessage();
+            System.out.println("An SQL Databse error occured!");
+            System.out.println("Error message: " + e.getMessage());
+            System.out.println("SQL State: " + e.getSQLState());
+            System.out.println("Stack Trace: " + e.getStackTrace());
+            return error;
+        }
+        return resultList;
     }
 }

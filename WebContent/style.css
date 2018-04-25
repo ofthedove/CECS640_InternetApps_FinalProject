@@ -171,3 +171,7 @@ img.header-logo {
 	justify-content: center;
 	flex-wrap: nowrap;
 }
+
+table {
+	margin: 10px auto;
+}
