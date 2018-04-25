@@ -12,7 +12,9 @@
 <body>
 	<div class="header">
 		<div class="header-logo">
-			<img class="header-logo" src="logo.png" alt="ACM Logo">
+			<a href="WelcomePage.jsp">
+				<img class="header-logo" src="logo.png" alt="ACM Logo" title="Home">
+			</a>
 		</div>
 		<h1 class="header-name">ACM Lending Library</h1>
 		<div class="header-login"> <%
@@ -43,9 +45,12 @@
 	<div class="content-container">
 		<div class="content">
 			<%
-				if(session.getAttribute("loggedIn") != null) {
-					if (session.getAttribute("loggedIn").toString().trim().equals("success")) {
-						out.println("<p style=\"color:red;\"> You are now logged in!</p>");
+				if(session.getAttribute("justLoggedIn") != null && session.getAttribute("uname") != null) {
+					if (session.getAttribute("justLoggedIn").toString().trim().equals("yes")) {
+						out.print("<p style=\"color:red;\"> You are now logged in as ");
+						out.print(session.getAttribute("uname"));
+						out.println("</p>");
+						session.removeAttribute("justLoggedIn");
 					}
 				}
 			%>

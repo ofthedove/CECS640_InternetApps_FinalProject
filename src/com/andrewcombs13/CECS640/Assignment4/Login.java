@@ -76,6 +76,7 @@ public class Login extends HttpServlet {
         if (succeeded)
         {
         	session.setAttribute("loggedIn", "success");
+        	session.setAttribute("justLoggedIn", "yes"); // Only show message immediately after success
         	session.setAttribute("uname", displayName);
             dispatcher = getServletContext().getRequestDispatcher(successURL);
         } else {

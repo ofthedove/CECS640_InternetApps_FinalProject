@@ -12,7 +12,9 @@
 <body>
 	<div class="header">
 		<div class="header-logo">
-			<img class="header-logo" src="logo.png" alt="ACM Logo">
+			<a href="WelcomePage.jsp">
+				<img class="header-logo" src="logo.png" alt="ACM Logo" title="Home">
+			</a>
 		</div>
 		<h1 class="header-name">ACM Lending Library</h1>
 		<div class="header-login">
