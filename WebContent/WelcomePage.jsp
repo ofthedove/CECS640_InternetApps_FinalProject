@@ -34,10 +34,10 @@
 	
 	<div class="menu">
 		<ul>
-			<a href="Browse.jsp"><li>Browse</li></a>
-			<a href="Circulation.jsp"><li>Circulation</li></a>
-			<a href="Manage.jsp"><li>Manage</li></a>
-			<a href="QuerySubmit.jsp"><li>Query</li></a>
+			<a href="Browse"><li>Browse</li></a>
+			<a href="Circulation"><li>Circulation</li></a>
+			<a href="Manage"><li>Manage</li></a>
+			<a href="QuerySubmit"><li>Query</li></a>
 		</ul>
 	</div>
 	
