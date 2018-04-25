@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.ArrayList,com.andrewcombs13.CECS640.Assignment4.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -44,6 +45,61 @@
 	<div class="content-container">
 		<div class="content">
 			<h1>Circulation</h1>
+			
+			<%
+				if (session.getAttribute("error") != null)
+				{
+					out.println(session.getAttribute("error"));
+				}
+				else
+				{
+					if (session.getAttribute("items") != null)
+					{
+						if (session.getAttribute("items") instanceof String) {
+							out.println("<p>" + (String)session.getAttribute("items") + "</p>");
+						} else {
+							ArrayList<Item> items = (ArrayList<Item>)session.getAttribute("items");
+							
+							if (items.size() == 0)
+							{
+								out.println("<p>You do not currently have any items checked out</p>");
+							}
+							else
+							{
+								out.println("<h2>Your Checked Out Items</h2>");
+								out.println("<table border=\"1\"><tr><td>Name</td><td>Status</td></tr>");
+								out.println("<tr><td colspan=\"2\">Description</td></tr>");
+	
+								for (Item t: items) {
+								    out.println("<tr>");
+								    
+								    out.println("<td>");
+								    out.println(t.name);
+								    out.println("</td><td>");
+								    if (t.checkedOutBy == null || t.checkedOutBy.isEmpty()) {
+									    out.println("Available");
+								    } else {
+									    out.println("Out: " + t.checkedOutBy);
+								    }
+								    out.println("</td>");
+								    
+								    out.println("</tr><tr>");
+								    
+								    out.println("<td colspan=\"2\">");
+								    out.println(t.description);
+								    out.println("</td>");
+								    
+								    out.println("</tr>");
+								}
+								
+								out.println("</table>");
+							}
+						}
+					}
+				}
+			%>
+			
+			<p>To check out an item, go to <a href="Browse">Browse</a></p>
 		</div>
 	</div>
 </body>
