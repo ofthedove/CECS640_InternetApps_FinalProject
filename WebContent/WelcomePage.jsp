@@ -31,6 +31,15 @@
 		%> </div>
 	</div>
 	
+	<div class="menu">
+		<ul>
+			<a href="Browse.jsp"><li>Browse</li></a>
+			<a href="Circulation.jsp"><li>Circulation</li></a>
+			<a href="Manage.jsp"><li>Manage</li></a>
+			<a href="QuerySubmit.jsp"><li>Query</li></a>
+		</ul>
+	</div>
+	
 	<div class="content-container">
 		<div class="content">
 			<%
@@ -40,10 +49,10 @@
 					}
 				}
 			%>
-			<p>Hello World</p>
-			<p>This page is under development</p>
-			<p>That is why there is so little content</p>
-			<p>Sorry for the inconvenience</p>
+			<p>Use the Browse tab to view the items in the library</p>
+			<p>Use the Circulation tab to check items in and out</p>
+			<p>Use the Manage tab to manage library inventory (admin only)</p>
+			<p>Use the Query tab to run queires directly against the database (admin only)</p>
 		</div>
 	</div>
 </body>
