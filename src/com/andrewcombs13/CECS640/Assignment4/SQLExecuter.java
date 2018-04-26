@@ -159,10 +159,18 @@ public class SQLExecuter
             return error;
         }
         
+        try
+        {
+            Statement statement = connection.createStatement();
+            String tquery = "INSERT INTO transactions (ItemID, tdate, ttype, description) VALUES (" + ItemID + ", '2018-04-25', 'CheckedOut', 'Checked out by " + uname + "')";
+            statement.executeUpdate(tquery);
+        }
+        catch (SQLException e) {}
+        
         return success;
     }
     
-    public String checkIn(String ItemID)
+    public String checkIn(String ItemID, String uname)
     {
         String query = "UPDATE Items SET checkedOut = 0, checkedOutBy = NULL WHERE ItemID = '" + ItemID + "'";
         String error = "Query Failed!";
@@ -192,6 +200,14 @@ public class SQLExecuter
             System.out.println("Stack Trace: " + e.getStackTrace());
             return error;
         }
+        
+        try
+        {
+            Statement statement = connection.createStatement();
+            String tquery = "INSERT INTO transactions (ItemID, tdate, ttype, description) VALUES (" + ItemID + ", '2018-04-25', 'CheckedIn', 'Checked in by " + uname + "')";
+            statement.executeUpdate(tquery);
+        }
+        catch (SQLException e) {}
         
         return success;
     }

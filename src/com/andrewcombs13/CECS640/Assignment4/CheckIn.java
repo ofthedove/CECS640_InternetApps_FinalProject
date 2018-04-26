@@ -32,7 +32,7 @@ public class CheckIn extends HttpServlet {
         	Object uname = session.getAttribute("uname");
         	if (uname != null && uname instanceof String && !((String)uname).isEmpty() )
         	{
-            	result = executer.checkIn(ItemID);
+            	result = executer.checkIn(ItemID, (String)uname);
         	}
         	else
         	{
