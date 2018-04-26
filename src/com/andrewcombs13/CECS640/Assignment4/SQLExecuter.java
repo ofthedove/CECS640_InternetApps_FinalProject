@@ -212,6 +212,34 @@ public class SQLExecuter
         return success;
     }
     
+    public String clearTransactions()
+    {
+        String query = "DELETE FROM transactions";
+        String error = "Query Failed!";
+        String success = "Successfully cleared transactions";
+        
+        if (IsOpen() == false)
+        {
+            return error + " No connection to database.";
+        }
+        try
+        {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+        }
+        catch (SQLException e)
+        {
+        	error += e.getMessage();
+            System.out.println("An SQL Databse error occured!");
+            System.out.println("Error message: " + e.getMessage());
+            System.out.println("SQL State: " + e.getSQLState());
+            System.out.println("Stack Trace: " + e.getStackTrace());
+            return error;
+        }
+        
+        return success;
+    }
+    
     public Object getAllItems()
     {
         return getMyItems(null);

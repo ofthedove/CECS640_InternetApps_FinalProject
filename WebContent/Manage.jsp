@@ -47,6 +47,24 @@
 			<h1>Manage</h1>
 			
 			<%
+				if (session.getAttribute("clearError") != null)
+				{
+					out.println(session.getAttribute("clearError"));
+					
+					session.removeAttribute("clearError");
+					session.removeAttribute("clearResult");
+				}
+				else
+				{
+					if (session.getAttribute("clearResult") != null)
+					{
+						out.println("<p>" + (String)session.getAttribute("clearResult") + "</p>");
+						session.removeAttribute("clearResult");
+					}
+				}
+			%>
+			
+			<%
 				if (session.getAttribute("error") != null)
 				{
 					out.println(session.getAttribute("error"));
@@ -84,6 +102,8 @@
 							}
 							
 							out.println("</table>");
+							
+							out.println("<a href=\"ClearTransactions\">Clear transaction log</a>");
 						}
 					}
 					
