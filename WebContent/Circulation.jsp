@@ -47,6 +47,24 @@
 			<h1>Circulation</h1>
 			
 			<%
+				if (session.getAttribute("checkInError") != null)
+				{
+					out.println(session.getAttribute("checkInError"));
+					
+					session.removeAttribute("checkInError");
+					session.removeAttribute("checkInResult");
+				}
+				else
+				{
+					if (session.getAttribute("checkInResult") != null)
+					{
+						out.println("<p>" + (String)session.getAttribute("checkInResult") + "</p>");
+						session.removeAttribute("checkInResult");
+					}
+				}
+			%>
+			
+			<%
 				if (session.getAttribute("error") != null)
 				{
 					out.println(session.getAttribute("error"));
@@ -67,7 +85,7 @@
 							else
 							{
 								out.println("<h2>Your Checked Out Items</h2>");
-								out.println("<table border=\"1\"><tr><td>Name</td><td>Status</td></tr>");
+								out.println("<table border=\"1\"><tr><td>Name</td><td>Check In</td></tr>");
 								out.println("<tr><td colspan=\"2\">Description</td></tr>");
 	
 								for (Item t: items) {
@@ -76,11 +94,7 @@
 								    out.println("<td>");
 								    out.println(t.name);
 								    out.println("</td><td>");
-								    if (t.checkedOutBy == null || t.checkedOutBy.isEmpty()) {
-									    out.println("Available");
-								    } else {
-									    out.println("Out: " + t.checkedOutBy);
-								    }
+								    out.println("<a href=\"CheckIn?ItemID=" + t.ItemID + "\">Check In</a>");
 								    out.println("</td>");
 								    
 								    out.println("</tr><tr>");
